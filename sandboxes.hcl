@@ -4,12 +4,17 @@ resource "network" "network" {
 }
 
 
+
 resource "container" "server" {
   network {
     id = resource.network.network.meta.id
   }
   image {
     name = "httpd:2.4"
+  }
+  port {
+    local    = "80"
+    protocol = "tcp"
   }
   privileged = false
   resources {
