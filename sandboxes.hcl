@@ -5,6 +5,7 @@ resource "network" "network" {
 
 
 
+
 resource "container" "server" {
   network {
     id = resource.network.network.meta.id
@@ -12,6 +13,7 @@ resource "container" "server" {
   image {
     name = "httpd:2.4"
   }
+  command = ["httpd-foreground"]
   port {
     local    = "80"
     protocol = "tcp"
